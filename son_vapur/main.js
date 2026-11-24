@@ -68,9 +68,9 @@ function renderFrame(f) {
 const BRAND='murat250sr';
 const BRAND_SHOWS=[9,44,84,124,160,196];
 function brandBadge(c,t){
-  for(const s of BRAND_SHOWS){
-    const d=5.2,lt=t-s; if(lt<0||lt>d) continue;
-    const a=eo(seg(lt,0,0.7))*(1-sm(seg(lt,d-0.7,d)));
+  {
+    const lt=t-2; if(lt<0||t>216.2) return;
+    const a=eo(seg(lt,0,0.8))*(1-sm(seg(t,215.6,216.2)));
     c.save(); c.font=`700 30px ${SANS}`; c.letterSpacing='4px';
     const tw=c.measureText(BRAND).width, w=tw+86, h=54, x=W-60-w+(1-eo(seg(lt,0,0.8)))*80, y=76;
     c.globalAlpha=a; c.shadowColor='rgba(0,0,0,0.5)'; c.shadowBlur=18;
