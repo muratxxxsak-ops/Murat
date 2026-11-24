@@ -63,12 +63,12 @@ function sceneOutro(c, t) {
   ferry(c, 760 + lt * 38, 452 - lt * 1.2, 0.36, 1, { lit: 0.3, dim: 0.98, t, wake: true });
   for (let i = 0; i < 5; i++) { const a = i * 0.9 + t * 0.4; gull(c, 200 + ((i * 230 + t * 30) % 900), 190 + Math.sin(a) * 30 + i * 18, 1.1, t * 6 + i * 2, 'rgba(60,34,50,0.85)'); }
   c.restore();
-  const a1 = sm(seg(lt, 1.6, 2.8)) * (1 - sm(seg(lt, 4.4, 5.2))), a2 = sm(seg(lt, 3.6, 4.6)) * (1 - sm(seg(lt, 5.4, 6.0)));
+  const a1 = sm(seg(lt, 1.2, 2.2)) * (1 - sm(seg(lt, 3.4, 4.0))), a2 = sm(seg(lt, 2.6, 3.4)) * (1 - sm(seg(lt, 4.2, 4.7)));
   txt(c, 'Kal dedin…', 640, 170, 54, { font: FONT, style: 'italic', col: '#fff4de', align: 'center', a: a1, shadow: 'rgba(120,60,40,0.7)', sb: 18, sp: 2 });
   txt(c, 'Kaldın.', 640, 238, 54, { font: FONT, style: 'italic', col: '#fff4de', align: 'center', a: a2, shadow: 'rgba(120,60,40,0.7)', sb: 18, sp: 2 });
   vignette(c, 0.35);
-  const bl = sm(seg(lt, 5.8, 6.7)); if (bl > 0) { c.fillStyle = `rgba(0,0,0,${bl})`; c.fillRect(0, 0, W, H); }
-  const ea = sm(seg(lt, 6.5, 7.2));
-  txt(c, 'SON VAPUR', 640, 372, 60, { font: FONT, col: '#f6e6c8', align: 'center', sp: 14, a: ea });
-  txt(c, 'bölüm sonu', 640, 412, 15, { font: SANS, col: '#c9b48c', align: 'center', sp: 8, a: ea * 0.85 });
+  const bl = sm(seg(lt, 4.6, 5.4)); if (bl > 0) { c.fillStyle = `rgba(0,0,0,${bl})`; c.fillRect(0, 0, W, H); }
+  const ea = sm(seg(lt, 5.3, 5.9));
+  txt(c, 'SON VAPUR', 640, 400, 60, { font: FONT, col: '#f6e6c8', align: 'center', sp: 14, a: ea });
+  txt(c, 'bölüm sonu', 640, 436, 15, { font: SANS, col: '#c9b48c', align: 'center', sp: 8, a: ea * 0.85 });
 }

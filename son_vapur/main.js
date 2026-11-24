@@ -54,6 +54,7 @@ function renderFrame(f) {
     txt(c, title, 70, H - 96, 40, { font: FONT, style: 'italic', col: '#fff6e6', shadow: 'rgba(0,0,0,0.6)', sb: 14 });
     c.restore();
   }
+  brandBadge(c,t); brandEnd(c,t);
   // açılış başlığı
   const ta = sm(seg(t, 1.2, 2.8)) * (1 - sm(seg(t, 5.6, 7.0)));
   if (ta > 0) { txt(c, 'SON VAPUR', 640, 150, 88, { font: FONT, col: '#fff2dc', align: 'center', sp: 20, a: ta, shadow: 'rgba(80,30,60,0.8)', sb: 30 }); txt(c, 'KISA DİZİ  ·  SEZON FİNALİ', 640, 190, 15, { font: SANS, weight: 600, col: '#f0c882', align: 'center', sp: 9, a: ta * 0.9 }); }
@@ -62,5 +63,35 @@ function renderFrame(f) {
   // sinema bantları
   c.fillStyle = '#000'; c.fillRect(0, 0, W, 52); c.fillRect(0, H - 52, W, 52);
   const fi = 1 - sm(t / 1.2); if (fi > 0) { c.fillStyle = `rgba(0,0,0,${fi})`; c.fillRect(0, 0, W, H); }
+}
+
+const BRAND='murat250sr';
+const BRAND_SHOWS=[9,44,84,124,160,196];
+function brandBadge(c,t){
+  for(const s of BRAND_SHOWS){
+    const d=5.2,lt=t-s; if(lt<0||lt>d) continue;
+    const a=eo(seg(lt,0,0.7))*(1-sm(seg(lt,d-0.7,d)));
+    c.save(); c.font=`700 30px ${SANS}`; c.letterSpacing='4px';
+    const tw=c.measureText(BRAND).width, w=tw+86, h=54, x=W-60-w+(1-eo(seg(lt,0,0.8)))*80, y=76;
+    c.globalAlpha=a; c.shadowColor='rgba(0,0,0,0.5)'; c.shadowBlur=18;
+    c.fillStyle='rgba(12,9,20,0.66)'; rrect(c,x,y,w,h,27); c.fill(); c.shadowColor='transparent'; c.shadowBlur=0;
+    c.strokeStyle='rgba(240,200,130,0.75)'; c.lineWidth=1.5; rrect(c,x,y,w,h,27); c.stroke();
+    const pr=0.5+0.5*Math.sin(t*4)+KK*0.5; c.fillStyle='rgba(255,196,110,1)'; c.beginPath(); c.arc(x+30,y+h/2,6+pr*2,0,TAU); c.fill();
+    glow(c,x+30,y+h/2,22,[255,190,100],0.5*(0.5+pr*0.5),'lighter');
+    const sw=((lt*0.45)%1.6-0.3)*tw, g=c.createLinearGradient(x+48,0,x+48+tw,0);
+    g.addColorStop(0,'#ffe2a8'); g.addColorStop(clamp(sw/tw-0.12),'#ffd08a'); g.addColorStop(clamp(sw/tw),'#ffffff'); g.addColorStop(clamp(sw/tw+0.12),'#ffd08a'); g.addColorStop(1,'#ffe2a8');
+    c.fillStyle=g; c.textBaseline='middle'; c.textAlign='left'; c.fillText(BRAND,x+48,y+h/2+1); c.restore();
+  }
+}
+function brandEnd(c,t){
+  const lt=t-216.1; if(lt<0) return;
+  c.save(); c.font=`700 66px ${SANS}`; c.letterSpacing='6px'; const tw=c.measureText(BRAND).width; let x=W/2-tw/2;
+  for(let i=0;i<BRAND.length;i++){
+    const ch=BRAND[i], a=eo(seg(lt,i*0.07,i*0.07+0.4)), cw=c.measureText(ch).width;
+    c.globalAlpha=a; c.shadowColor='rgba(255,170,80,0.9)'; c.shadowBlur=24*a; c.fillStyle='#ffe6b8'; c.textBaseline='alphabetic';
+    c.fillText(ch,x,508+(1-a)*-26); x+=cw;
+  }
+  c.globalAlpha=sm(seg(lt,0.9,1.3)); c.shadowBlur=0; c.fillStyle='rgba(240,200,130,0.9)'; c.fillRect(W/2-tw/2,528,tw*sm(seg(lt,0.7,1.3)),2);
+  c.restore();
 }
 window.renderFrame = renderFrame;
