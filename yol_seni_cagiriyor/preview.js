@@ -1,9 +1,9 @@
 const { chromium } = require('playwright'); const fs = require('fs');
 (async () => {
   const times = process.argv.slice(2).map(Number); const out = process.env.OUT;
-  const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
+  const b = await chromium.launch({ args: ['--allow-file-access-from-files', '--disable-web-security'] }); const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
   const errs = []; p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
-  await p.goto('file://' + process.cwd() + '/index.html'); await p.waitForTimeout(400);
+  await p.goto('file://' + process.cwd() + '/index.html'); await p.waitForFunction(() => window.READY, null, { timeout: 30000 });
   for (const t of times) {
     const t0 = Date.now();
     const d = await p.evaluate(f => { try { renderFrame(f); return document.getElementById('cv').toDataURL('image/jpeg', 0.9); } catch (e) { return 'ERR ' + e.stack; } }, Math.round(t * 24));
