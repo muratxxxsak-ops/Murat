@@ -196,12 +196,12 @@ S(B(38), B(40.5), (t, lt) => walkUmb(t, lt, { x0: -2.2, cam: lt * .2, lean: 1 })
     return {}; });
   S(T[1], T[2], (t, lt) => { street(t, { y: 1.4, z: -3 }, { lit: .3, sky0: [40, 48, 70] }); // fırtına bizden korkar
     const pk = P2('kasim', -.3, 2.6, { view: 'front', P: fPose({ ab: [.15, 2.5], el: [.1, -.6] }), wind: .5, smile: .6 }); P2('linda', .4, 2.7, { view: 'front', wind: .5, smile: .8 });
-    { const [hx, hy] = pk.hands[1]; umbrella(hx, hy - 230 * 1.12, 230, -.15, COL.umb, 1, 1); } rainTop(t, 380, .5, 40, .6);
+    { const [hx, hy] = pk.hands[1]; umbrella(hx, hy - 230 * .45, 230, -.15, COL.umb, 1, 1); } rainTop(t, 380, .5, 40, .6);
     TP.save(); TP.globalCompositeOperation = 'destination-out'; TP.fillStyle = '#000'; TP.beginPath(); TP.ellipse(600, 420, 260, 330, 0, 0, TAU); TP.fill(); TP.restore(); leavesFall(t * 2, 20); return {}; });
   S(T[2], T[3], (t, lt) => { vwash(0, H, [[0, [60, 70, 96]], [1, [130, 136, 156]]]); // kalkan
-    const pk = person({ x: 500, y: 1180, h: 1120, who: 'kasim', view: 'front', P: fPose({ ab: [.2, 2.4], el: [.1, -.5] }), smile: .2, L: [.7, -.7] });
-    person({ x: 780, y: 1150, h: 1000, who: 'linda', view: 'front', smile: .7, P: fPose({ tilt: -.1 }) });
-    { const [hx, hy] = pk.hands[1], r0 = 300; umbrella(hx - 40, hy - r0 * 1.12, r0, -.3, COL.umb, 1, 1); } rainTop(t, 300, .55, 40, .55); return {}; });
+    const pk = person({ x: 500, y: 1360, h: 1120, who: 'kasim', view: 'front', P: fPose({ ab: [.2, 1.5], el: [.1, -.5] }), smile: .2, L: [.7, -.7] });
+    person({ x: 780, y: 1330, h: 1000, who: 'linda', view: 'front', smile: .7, P: fPose({ tilt: -.1 }) });
+    { const [hx, hy] = pk.hands[1]; umbrella(hx - 72, hy - 300, 330, -.25, COL.umb, 1, 1); } rainTop(t, 300, .55, 40, .55); TP.save(); TP.globalCompositeOperation = 'destination-out'; TP.beginPath(); TP.moveTo(320, 190); TP.lineTo(930, 120); TP.lineTo(1000, 720); TP.lineTo(380, 720); TP.fill(); TP.restore(); return {}; });
   S(T[3], T[4], (t, lt) => { // evim / şafağın
     vwash(0, H, [[0, [120, 110, 170]], [.5, [244, 170, 150]], [.8, [255, 220, 160]], [1, [250, 236, 200]]]);
     const sy = 520 - sm(lt / 2.4) * 120; blob(640, sy, 160, [255, 230, 170], .9); blob(640, sy, 60, [255, 250, 230], 1);
@@ -215,8 +215,8 @@ S(B(38), B(40.5), (t, lt) => walkUmb(t, lt, { x0: -2.2, cam: lt * .2, lean: 1 })
     return { pencil: .5 }; });
   S(T[5], T[6], (t, lt) => { street(t, { y: 1.4, z: -2.5, f: 900 }, { lit: .5 }); // kimse giremez araya
     paintText('KASIM ♥ LİNDA', 260, 200, 48, [250, 244, 236], { rot: -.08 });
-    person({ x: 600, y: 900, h: 760, who: 'kasim', view: 'front', P: fPose({ ab: [.5, .5], el: [1.3, 1.3], fw: [.5, .5] }), smile: .7, closed: 1 });
-    person({ x: 680, y: 890, h: 700, who: 'linda', view: 'back', P: fPose({ ab: [.25, .25], el: [.5, .5] }) });
+    person({ x: 600, y: 900, h: 760, who: 'kasim', view: 'front', P: fPose({ ab: [.6, .6], el: [-1.8, -1.8], fw: [.3, .3] }), smile: .7, closed: 1 });
+    person({ x: 680, y: 890, h: 700, who: 'linda', view: 'back', P: fPose({ ab: [.08, .08], el: [.05, .05] }) });
     rainTop(t, 160); return {}; }); }
 // 124.6 - 127.3: şemsiye kuşbakışı döner
 S(B(50.8), B(52), (t, lt) => { vwash(0, H, [[0, [80, 86, 100]], [1, [70, 76, 92]]]);
