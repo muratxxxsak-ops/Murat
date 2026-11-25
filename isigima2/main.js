@@ -28,7 +28,7 @@ function renderFrame(f) {
   LIGHTS = []; setCam({});
   const o = sh.fn(td, Math.max(0, lt), d, t) || {};
   C.setTransform(1, 0, 0, 1, 0, 0);
-  SEED = Math.floor(t * 12) % 3;
+  SEED = (i < 0 ? 0 : i) % 3;
   let pf = o.paperFade || 0;
   const xi = sh.xi === undefined ? 0 : sh.xi; if (xi > 0 && t - sh.a < xi) pf = Math.max(pf, 1 - sm((t - sh.a) / xi));
   if (sh.xo && t > sh.b - sh.xo) pf = Math.max(pf, sm((t - sh.b + sh.xo) / sh.xo));
